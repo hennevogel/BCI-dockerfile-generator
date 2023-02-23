@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Thu Feb 23 12:45:42 UTC 2023 - Dan Čermák <dcermak@suse.com>
+
+- First version of the PHP-8 BCI (FPM flavor)
+
+-------------------------------------------------------------------
 Thu Feb 23 12:43:10 UTC 2023 - SUSE Update Bot <noreply@suse.com>
 
 - First version of the PHP 8 fpm BCI
