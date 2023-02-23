@@ -169,6 +169,18 @@ staging_build:
         source_project: home:defolos:BCI:CR:SLE-15-SP4
         source_package: aspnet-runtime-7.0
         target_project: home:defolos:BCI:CR:SLE-15-SP4:Staging
+    - branch_package:
+        source_project: home:defolos:BCI:CR:SLE-15-SP4
+        source_package: php-8-apache-image
+        target_project: home:defolos:BCI:CR:SLE-15-SP4:Staging
+    - branch_package:
+        source_project: home:defolos:BCI:CR:SLE-15-SP4
+        source_package: php-8-fpm-image
+        target_project: home:defolos:BCI:CR:SLE-15-SP4:Staging
+    - branch_package:
+        source_project: home:defolos:BCI:CR:SLE-15-SP4
+        source_package: php-8-cli-image
+        target_project: home:defolos:BCI:CR:SLE-15-SP4:Staging
   filters:
     event: pull_request
 
@@ -300,6 +312,15 @@ refresh_devel_BCI:
     - trigger_services:
         project: devel:BCI:SLE-15-SP4
         package: aspnet-runtime-7.0
+    - trigger_services:
+        project: devel:BCI:SLE-15-SP4
+        package: php-8-apache-image
+    - trigger_services:
+        project: devel:BCI:SLE-15-SP4
+        package: php-8-fpm-image
+    - trigger_services:
+        project: devel:BCI:SLE-15-SP4
+        package: php-8-cli-image
   filters:
     branches:
       only:

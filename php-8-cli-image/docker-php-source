@@ -1,0 +1,103 @@
+#!/bin/sh
+set -euo pipefail
+
+dir=/usr/src/php
+
+usage() {
+	echo "usage: $0 COMMAND"
+	echo
+	echo "Manage php source tarball lifecycle."
+	echo
+	echo "Commands:"
+	echo "   extract  extract php source tarball into directory $dir if not already done."
+	echo "   delete   delete extracted php source located into $dir if not already done."
+	echo
+}
+
+case "$1" in
+	extract)
+		mkdir -p "$dir"
+		if [ ! -f "$dir/.docker-extracted" ]; then
+			
+tar -xvf /usr/src/php-8.0.27.tar.xz -C "$dir" && cd /usr/src/php/php-8.0.27/
+cp /usr/src/README.macros .
+
+
+
+/usr/bin/cat /usr/src/php-phpize.patch | 
+/usr/bin/patch -p1  --fuzz=0 --no-backup-if-mismatch
+
+
+/usr/bin/cat /usr/src/php-ar-flags.patch | 
+/usr/bin/patch -p1  --fuzz=0 --no-backup-if-mismatch
+
+
+/usr/bin/cat /usr/src/php-php-config.patch | 
+/usr/bin/patch -p1  --fuzz=0 --no-backup-if-mismatch
+
+
+/usr/bin/cat /usr/src/php-ini.patch | 
+/usr/bin/patch -p1  --fuzz=0 --no-backup-if-mismatch
+
+
+/usr/bin/cat /usr/src/php-systzdata-v20.patch | 
+/usr/bin/patch -p1  --fuzz=0 --no-backup-if-mismatch
+
+
+/usr/bin/cat /usr/src/php-systemd-unit.patch | 
+/usr/bin/patch -p1  --fuzz=0 --no-backup-if-mismatch
+
+
+/usr/bin/cat /usr/src/php-sort-filelist-phar.patch | 
+/usr/bin/patch -p1  --fuzz=0 --no-backup-if-mismatch
+
+
+/usr/bin/cat /usr/src/php-crypt-tests.patch | 
+/usr/bin/patch -p1  --fuzz=0 --no-backup-if-mismatch
+
+
+/usr/bin/cat /usr/src/php-date-regenerate-lexers.patch | 
+/usr/bin/patch -p1  --fuzz=0 --no-backup-if-mismatch
+
+
+/usr/bin/cat /usr/src/php-build-reproducible-phar.patch | 
+/usr/bin/patch -p1  --fuzz=0 --no-backup-if-mismatch
+
+
+
+# use system pcre2
+rm -r ext/pcre/pcre2lib
+
+# get parsers regenerated
+for parser in $(find -type f -name "*.re");do
+    rm -v ${parser%.*}.c
+done
+
+# Safety check for API version change.
+vapi=$(sed -n '/#define PHP_API_VERSION/{s/.* //;p}' main/php.h)
+if test "x${vapi}" != "x20200930"; then
+    : Error: Upstream API version is now ${vapi}, expecting 20200930.
+    : Update the apiver macro and rebuild.
+    exit 1
+fi
+vzend=$(sed -n '/#define ZEND_MODULE_API_NO/{s/^[^0-9]*//;p;}' Zend/zend_modules.h)
+if test "x${vzend}" != "x20200930"; then
+    : Error: Upstream Zend ABI version is now ${vzend}, expecting 20200930.
+    : Update the zendver macro and rebuild.
+    exit 1
+fi
+
+
+			touch "$dir/.docker-extracted"
+		fi
+		;;
+
+	delete)
+		rm -rf "$dir"
+		;;
+
+	*)
+		usage
+		exit 1
+		;;
+esac
