@@ -1,12 +1,12 @@
 # SPDX-License-Identifier: MIT
 #!BuildTag: bci/php:8
 #!BuildTag: bci/php:8-%RELEASE%
-#!BuildTag: bci/php:8.0.27-cli
-#!BuildTag: bci/php:8.0.27-cli-%RELEASE%
+#!BuildTag: bci/php:8.0.28-cli
+#!BuildTag: bci/php:8.0.28-cli-%RELEASE%
 #!BuildTag: bci/php:8-cli
 #!BuildTag: bci/php:8-cli-%RELEASE%
-#!BuildTag: bci/php:8.0.27
-#!BuildTag: bci/php:8.0.27-%RELEASE%
+#!BuildTag: bci/php:8.0.28
+#!BuildTag: bci/php:8.0.28-%RELEASE%
 #!BuildVersion: 15.4.8
 FROM suse/sle15:15.4
 
@@ -31,10 +31,10 @@ LABEL com.suse.release-stage="released"
 
 
 WORKDIR /usr/src/
-#!RemoteAssetUrl: https://secure.php.net/distributions/php-8.0.27.tar.xz
-COPY php-8.0.27.tar.xz .
-#!RemoteAssetUrl: https://secure.php.net/distributions/php-8.0.27.tar.xz.asc
-COPY php-8.0.27.tar.xz.asc .
+#!RemoteAssetUrl: https://secure.php.net/distributions/php-8.0.28.tar.xz
+COPY php-8.0.28.tar.xz .
+#!RemoteAssetUrl: https://secure.php.net/distributions/php-8.0.28.tar.xz.asc
+COPY php-8.0.28.tar.xz.asc .
 COPY README.macros .
 COPY php-build-reproducible-phar.patch .
 COPY php-date-regenerate-lexers.patch .
@@ -71,12 +71,12 @@ RUN set -euo pipefail; \
     zypper -n clean; \
     rm -rf /var/log/*
 
-ENV PHP_URL="https://secure.php.net/distributions/php-8.0.27.tar.xz" PHP_ASC_URL="https://secure.php.net/distributions/php-8.0.27.tar.xz.asc"
-ENV PHP_SHA256="f942cbfe2f7bacbb8039fb79bbec41c76ea779ac5c8157f21e1e0c1b28a5fc3a"
+ENV PHP_URL="https://secure.php.net/distributions/php-8.0.28.tar.xz" PHP_ASC_URL="https://secure.php.net/distributions/php-8.0.28.tar.xz.asc"
+ENV PHP_SHA256="5e07278a1f315a67d36a676c01343ca2d4da5ec5bdb15d018e4248b3012bc0cd"
 ENV GPG_KEYS=""
 ENV PHP_INI_DIR="/etc/php8/"
 ENV PHPIZE_DEPS="php8-devel autoconf gawk gcc make file"
-ENV PHP_VERSION="8.0.27"
+ENV PHP_VERSION="8.0.28"
 ENV COMPOSER_VERSION="%%composer_version%%"
 ENV PHP_CFLAGS="-O2 -g -m64 -fmessage-length=0 -D_FORTIFY_SOURCE=2 -fstack-protector -funwind-tables -fasynchronous-unwind-tables -O3 -fPIE -fPIC -DPIC -D_GNU_SOURCE -fno-strict-aliasing"
 ENV PHP_CPPFLAGS="-O2 -g -m64 -fmessage-length=0 -D_FORTIFY_SOURCE=2 -fstack-protector -funwind-tables -fasynchronous-unwind-tables -O3 -fPIE -fPIC -DPIC -D_GNU_SOURCE -fno-strict-aliasing"

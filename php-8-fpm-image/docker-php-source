@@ -19,7 +19,7 @@ case "$1" in
 		mkdir -p "$dir"
 		if [ ! -f "$dir/.docker-extracted" ]; then
 			
-tar -xvf /usr/src/php-8.0.27.tar.xz -C "$dir" && cd /usr/src/php/php-8.0.27/
+tar -xvf /usr/src/php-8.0.28.tar.xz -C "$dir" && cd /usr/src/php/php-8.0.28/
 cp /usr/src/README.macros .
 
 

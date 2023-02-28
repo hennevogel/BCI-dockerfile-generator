@@ -16,7 +16,7 @@ if [ -z "$srcExists" ]; then
 	touch /usr/src/php/.docker-delete-me
 fi
 
-cd /usr/src/php/php-8.0.27/ext
+cd /usr/src/php/php-8.0.28/ext
 
 usage() {
 	echo "usage: $0 ext-name [configure flags]"
