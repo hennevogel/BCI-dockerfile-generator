@@ -206,11 +206,7 @@ class StagingBot:
         where the build recipes are checked out by default.
 
         """
-        return (
-            str(self.os_version)
-            if self.os_version == OsVersion.TUMBLEWEED
-            else f"sle15-sp{str(self.os_version)}"
-        )
+        return self.os_version.deployment_branch_name
 
     @property
     def package_names(self) -> list[str] | None:

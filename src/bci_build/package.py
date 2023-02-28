@@ -143,6 +143,19 @@ class OsVersion(enum.Enum):
             return self.value
         return f"SP{self.value}"
 
+    @property
+    def deployment_branch_name(self) -> str:
+        """Name of the deployment branch on
+        https://github.com/SUSE/BCI-dockerfile-generator for this operating
+        system version.
+
+        """
+        return (
+            str(self.value)
+            if self.value == OsVersion.TUMBLEWEED.value
+            else f"sle15-sp{str(self.value)}"
+        )
+
 
 #: Operating system versions that have the label ``com.suse.release-stage`` set
 #: to ``released``.
