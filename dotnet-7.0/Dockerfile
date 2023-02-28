@@ -18,6 +18,7 @@ LABEL org.opencontainers.image.version="7.0"
 LABEL org.opencontainers.image.url="https://www.suse.com/products/server/"
 LABEL org.opencontainers.image.created="%BUILDTIME%"
 LABEL org.opencontainers.image.vendor="SUSE LLC"
+LABEL org.opencontainers.image.source="https://github.com/SUSE/BCI-dockerfile-generator/tree/sle15-sp4/dotnet-7.0"
 LABEL org.opensuse.reference="registry.suse.com/bci/dotnet-sdk:7.0-%RELEASE%"
 LABEL org.openbuildservice.disturl="%DISTURL%"
 LABEL com.suse.supportlevel="techpreview"
@@ -54,8 +55,8 @@ COPY dotnet-apphost-pack-7.0.3-x64.rpm /tmp/
 COPY aspnetcore-targeting-pack-7.0.3-x64.rpm /tmp/
 #!RemoteAssetUrl: https://packages.microsoft.com/sles/15/prod/aspnetcore-runtime-7.0.3-x64.rpm
 COPY aspnetcore-runtime-7.0.3-x64.rpm /tmp/
-#!RemoteAssetUrl: https://packages.microsoft.com/sles/15/prod/dotnet-sdk-7.0.200-x64.rpm
-COPY dotnet-sdk-7.0.200-x64.rpm /tmp/
+#!RemoteAssetUrl: https://packages.microsoft.com/sles/15/prod/dotnet-sdk-7.0.201-x64.rpm
+COPY dotnet-sdk-7.0.201-x64.rpm /tmp/
 
 COPY prod.repo /tmp
 
